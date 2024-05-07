@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="promotions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Klir.TechChallenge.Core\Klir.TechChallenge.Core.csproj" />
+  </ItemGroup>
+
+</Project>
