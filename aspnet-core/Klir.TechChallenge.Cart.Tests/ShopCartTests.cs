@@ -3,11 +3,11 @@ using Klir.TechChallenge.Cart.Domain;
 
 namespace Klir.TechChallenge.Cart.Tests
 {
-    public class CartTests
+    public class ShopCartTests
     {
         private ShopCart _cart;
 
-        public CartTests()
+        public ShopCartTests()
         {
             _cart = new ShopCart();
         }

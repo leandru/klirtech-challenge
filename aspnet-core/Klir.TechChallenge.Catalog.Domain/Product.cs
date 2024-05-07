@@ -6,23 +6,12 @@ namespace Klir.TechChallenge.Catalog.Domain
     {
         public string Name { get; private set; }
         public decimal Price { get; private set; }
-       
-        public IPromotion PromotionStrategy { get; }
 
-        public Product(string name, decimal price, IPromotion promotionStrategy = null)
+        public Product(string name, decimal price)
         {
             Name = name;
             Price = price;
-            PromotionStrategy = promotionStrategy;
         }
 
-        public decimal ApplyPromotion(int quantity)
-        {
-            if (PromotionStrategy != null)
-            {
-                return PromotionStrategy.Apply(Price, quantity);
-            }
-            return Price * quantity;
-        }
     }
 }
