@@ -1,15 +1,14 @@
-﻿using Klir.TechChallenge.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Klir.TechChallenge.Cart.Domain
+namespace Klir.TechChallenge.Sales.Domain.Entities
 {
-    public class ShopCart: Entity
+    public class ShopCart
     {
         private List<ShopCartItem> _itens;
         public IReadOnlyCollection<ShopCartItem> Itens => _itens;
         public ShopCart()
         {
-            this._itens = new List<ShopCartItem>();
+            _itens = new List<ShopCartItem>();
         }
 
         public void AddItem(ShopCartItem item)

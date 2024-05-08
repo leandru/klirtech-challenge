@@ -1,5 +1,6 @@
+using Klir.TechChallenge.Sales.Domain;
+using Klir.TechChallenge.Sales.Domain.Entities;
 using Xunit;
-using Klir.TechChallenge.Cart.Domain;
 
 namespace Klir.TechChallenge.Cart.Tests
 {

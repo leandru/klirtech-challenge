@@ -19,19 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{E5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "catalog", "catalog", "{17EA4A09-3ABA-42FE-9037-87641C622B4A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cart", "cart", "{AFC03666-2AC8-4297-8EC8-E1CAF486B909}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sales", "sales", "{AFC03666-2AC8-4297-8EC8-E1CAF486B909}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{B266C45A-5365-4E3F-8031-3BD2BA0A2A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Domain", "aspnet-core\Klir.TechChallenge.Cart.Domain\Klir.TechChallenge.Sales.Domain.csproj", "{E901F63C-32E0-4E9C-AF7D-4F097FA13FC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Cart.Domain", "aspnet-core\Klir.TechChallenge.Cart.Domain\Klir.TechChallenge.Cart.Domain.csproj", "{E901F63C-32E0-4E9C-AF7D-4F097FA13FC6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Cart.Tests", "aspnet-core\Klir.TechChallenge.Cart.Tests\Klir.TechChallenge.Cart.Tests.csproj", "{D8EA69B6-E0ED-4DB5-9674-676A78410A08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Tests", "aspnet-core\Klir.TechChallenge.Cart.Tests\Klir.TechChallenge.Sales.Tests.csproj", "{D8EA69B6-E0ED-4DB5-9674-676A78410A08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Catalog.Domain", "aspnet-core\Klir.TechChallenge.Catalog.Domain\Klir.TechChallenge.Catalog.Domain.csproj", "{B25FCC21-390A-43CA-934D-301C35699448}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Core", "aspnet-core\Klir.TechChallenge.Core\Klir.TechChallenge.Core.csproj", "{9D6E9C45-0CBD-4454-BAAA-5F12F788DEA4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.Catalog.Tests", "aspnet-core\Klir.TechChallenge.Catalog.Tests\Klir.TechChallenge.Catalog.Tests.csproj", "{FF7A47D6-B380-42E0-A89C-B8F8021DBCF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,14 +56,6 @@ Global
 		{B25FCC21-390A-43CA-934D-301C35699448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B25FCC21-390A-43CA-934D-301C35699448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B25FCC21-390A-43CA-934D-301C35699448}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D6E9C45-0CBD-4454-BAAA-5F12F788DEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D6E9C45-0CBD-4454-BAAA-5F12F788DEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D6E9C45-0CBD-4454-BAAA-5F12F788DEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D6E9C45-0CBD-4454-BAAA-5F12F788DEA4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF7A47D6-B380-42E0-A89C-B8F8021DBCF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF7A47D6-B380-42E0-A89C-B8F8021DBCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF7A47D6-B380-42E0-A89C-B8F8021DBCF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF7A47D6-B380-42E0-A89C-B8F8021DBCF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,12 +67,9 @@ Global
 		{E52041FB-CC13-4F1D-8AFA-7EAAA06B6768} = {F332D047-B9A7-4B85-8359-9328589BED29}
 		{17EA4A09-3ABA-42FE-9037-87641C622B4A} = {E52041FB-CC13-4F1D-8AFA-7EAAA06B6768}
 		{AFC03666-2AC8-4297-8EC8-E1CAF486B909} = {E52041FB-CC13-4F1D-8AFA-7EAAA06B6768}
-		{B266C45A-5365-4E3F-8031-3BD2BA0A2A52} = {E52041FB-CC13-4F1D-8AFA-7EAAA06B6768}
 		{E901F63C-32E0-4E9C-AF7D-4F097FA13FC6} = {AFC03666-2AC8-4297-8EC8-E1CAF486B909}
 		{D8EA69B6-E0ED-4DB5-9674-676A78410A08} = {AFC03666-2AC8-4297-8EC8-E1CAF486B909}
 		{B25FCC21-390A-43CA-934D-301C35699448} = {17EA4A09-3ABA-42FE-9037-87641C622B4A}
-		{9D6E9C45-0CBD-4454-BAAA-5F12F788DEA4} = {B266C45A-5365-4E3F-8031-3BD2BA0A2A52}
-		{FF7A47D6-B380-42E0-A89C-B8F8021DBCF5} = {17EA4A09-3ABA-42FE-9037-87641C622B4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B22C9792-C11E-4F83-91D8-5ACFDDC0FC5E}

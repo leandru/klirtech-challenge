@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Klir.TechChallenge.Cart.Domain\Klir.TechChallenge.Cart.Domain.csproj" />
+    <ProjectReference Include="..\Klir.TechChallenge.Cart.Domain\Klir.TechChallenge.Sales.Domain.csproj" />
   </ItemGroup>
 
 </Project>
