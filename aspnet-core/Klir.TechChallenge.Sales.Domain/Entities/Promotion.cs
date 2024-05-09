@@ -43,10 +43,7 @@
             PromotionTypeId = promotionTypeId;
         }
 
-
-
-
-        public decimal GetFinalPrice(int quantity, int price)
+        public decimal GetPriceWithDiscount(int quantity, decimal price)
         {
             return PromotionType.CalculateFinalPrice(quantity, price, RequiredQuantity, FreeQuantity, TargetPrice);
         }

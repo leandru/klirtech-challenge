@@ -6,17 +6,17 @@ namespace Klir.TechChallenge.Cart.Tests
 {
     public class ShopCartTests
     {
-        private ShopCart _cart;
+        private Sales.Domain.Entities.Cart _cart;
 
         public ShopCartTests()
         {
-            _cart = new ShopCart();
+            _cart = new Sales.Domain.Entities.Cart();
         }
 
         [Fact]
         public void AddItem_AddsItemToCart_WhenItemDoesNotExist()
         {
-            var itemToAdd = new ShopCartItem { ProductId = 1, Quantity = 1 };
+            var itemToAdd = new CartItem { ProductId = 1, Quantity = 1 };
 
             _cart.AddItem(itemToAdd);
 
@@ -27,9 +27,9 @@ namespace Klir.TechChallenge.Cart.Tests
         public void AddItem_IncrementsQuantity_WhenItemExists()
         {
 
-            var existingItem = new ShopCartItem { ProductId = 1, Quantity = 1 };
+            var existingItem = new CartItem { ProductId = 1, Quantity = 1 };
             _cart.AddItem(existingItem);
-            var itemToAdd = new ShopCartItem { ProductId = 1, Quantity = 1 };
+            var itemToAdd = new CartItem { ProductId = 1, Quantity = 1 };
 
             _cart.AddItem(itemToAdd);
 
@@ -39,8 +39,8 @@ namespace Klir.TechChallenge.Cart.Tests
         [Fact]
         public void RemoveItem_RemovesItemFromCart()
         {
-            var item1 = new ShopCartItem { ProductId = 2, Quantity = 3 };
-            var item2= new ShopCartItem { ProductId = 1, Quantity = 1 };
+            var item1 = new CartItem { ProductId = 2, Quantity = 3 };
+            var item2= new CartItem { ProductId = 1, Quantity = 1 };
             _cart.AddItem(item1);
 
             _cart.AddItem(item2);

@@ -1,0 +1,6 @@
+@Klir.TechChallenge.Web.API2_HostAddress = http://localhost:5196
+
+GET {{Klir.TechChallenge.Web.API2_HostAddress}}/products/
+Accept: application/json
+
+###

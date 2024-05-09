@@ -1,5 +1,4 @@
 using Klir.TechChallenge.Sales.Domain.Entities;
-using Xunit;
 
 namespace Klir.TechChallenge.Sales.Tests
 {
@@ -18,7 +17,7 @@ namespace Klir.TechChallenge.Sales.Tests
 
             var promotion = new Promotion(1, "Buy 1 Get 1 Free", promotionType, 1, 1);
 
-            var totalPrice = promotion.GetFinalPrice(quantity, price);
+            var totalPrice = promotion.GetPriceWithDiscount(quantity, price);
 
             Assert.Equal(expectedTotalPrice, totalPrice);
         }
@@ -36,7 +35,7 @@ namespace Klir.TechChallenge.Sales.Tests
 
             var promotion = new Promotion(1, "Buy 2 Get 1 Free", promotionType, 2, 1);
 
-            var totalPrice = promotion.GetFinalPrice(quantity, price);
+            var totalPrice = promotion.GetPriceWithDiscount(quantity, price);
 
             Assert.Equal(expectedTotalPrice, totalPrice);
         }
@@ -54,7 +53,7 @@ namespace Klir.TechChallenge.Sales.Tests
 
             var promotion = new Promotion(1, "Buy 3 for 10 Euro ", promotionType, 3, 10m);
 
-            var totalPrice = promotion.GetFinalPrice(quantity, price);
+            var totalPrice = promotion.GetPriceWithDiscount(quantity, price);
 
             Assert.Equal(expectedTotalPrice, totalPrice);
         }
@@ -72,7 +71,7 @@ namespace Klir.TechChallenge.Sales.Tests
 
             var promotion = new Promotion(1, "Buy 3 for 20 Euro ", promotionType, 3, 20m);
 
-            var totalPrice = promotion.GetFinalPrice(quantity, price);
+            var totalPrice = promotion.GetPriceWithDiscount(quantity, price);
 
             Assert.Equal(expectedTotalPrice, totalPrice);
         }
