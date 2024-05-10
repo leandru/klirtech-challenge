@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Klir.TechChallenge.Sales.Application.ViewModels
+﻿namespace Klir.TechChallenge.Sales.Application.ViewModels
 {
-    public class CartCheckoutResultItem
-    {
-        public int MyProperty { get; set; }
-    }
+    public record CartCheckoutItem(int ProductId, string ProductName, int Quantity, decimal Price, decimal TotalItem, string PromotionApplied);
 }

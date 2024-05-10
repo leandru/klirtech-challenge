@@ -1,20 +1,45 @@
-﻿using Klir.TechChallenge.Catalog.Domain.Entities;
+﻿using System;
 
 namespace Klir.TechChallenge.Sales.Domain.Entities
 {
     public class CartItem
     {
-        public int CartId { get; set; }
+        public Guid CartId { get; set; }
 
         public int ProductId { get; private set; }
+
+        public string ProductName { get; private set; }
 
         public decimal Price { get; private set; }
 
         public int Quantity { get; private set; }
 
-        public decimal TotalItem()
+        public CartItem(int productId, string productName, decimal price, int quantity)
+        {
+            ProductId = productId;
+            ProductName = productName;
+            Price = price;
+            Quantity = quantity;
+        }
+
+        public void AssociateTo(Guid cartId)
+        {
+            CartId = cartId;
+        }
+
+        public decimal ItemTotalPrice()
         {
             return Quantity * Price;
+        }
+
+        public decimal ItemTotalPriceWithDiscount()
+        {
+            return ProductPromotion.Promotion.GetPriceWithDiscount(Quantity, Price);
+        }
+
+        public string PromotionName()
+        {
+            return ProductPromotion?.Promotion?.Name;
         }
 
         public void SetQuantity( int amount )
@@ -22,7 +47,7 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
             Quantity = amount;
         } 
 
-    public virtual ProductPromotion ProductPromotion { get; set; }
+        public virtual ProductPromotion ProductPromotion { get; set; }
 
     }
 }

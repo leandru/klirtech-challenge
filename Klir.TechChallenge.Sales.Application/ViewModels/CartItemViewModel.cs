@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Klir.TechChallenge.Sales.Application.ViewModels
+﻿namespace Klir.TechChallenge.Sales.Application.ViewModels
 {
-    public record CartItemViewModel(int ProductId, decimal ProductPrice, int Quantity);
+    public record CartItemViewModel(Guid CartId, int ProductId, string ProductName, decimal Price, int Quantity );
 }

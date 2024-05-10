@@ -29,11 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Tests", "aspnet-core\Klir.TechChallenge.Sales.Tests\Klir.TechChallenge.Sales.Tests.csproj", "{087FFFED-CBD1-47AA-82F4-D3D6438E3FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.Web.API", "aspnet-core\Klir.TechChallenge.Web.API2\Klir.TechChallenge.Web.API.csproj", "{F69F60A1-7FFA-42E5-AFB9-5403DBC574F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Web.API", "aspnet-core\Klir.TechChallenge.Web.API2\Klir.TechChallenge.Web.API.csproj", "{F69F60A1-7FFA-42E5-AFB9-5403DBC574F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.Sales.Data", "aspnet-core\Klir.TechChallenge.Sales.Data\Klir.TechChallenge.Sales.Data.csproj", "{5CA25955-8D7B-4214-9023-422E3B32B63B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Data", "aspnet-core\Klir.TechChallenge.Sales.Data\Klir.TechChallenge.Sales.Data.csproj", "{5CA25955-8D7B-4214-9023-422E3B32B63B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.Sales.Application", "Klir.TechChallenge.Sales.Application\Klir.TechChallenge.Sales.Application.csproj", "{97F94572-B29C-4F52-8AA1-E1A40DF843B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Application", "Klir.TechChallenge.Sales.Application\Klir.TechChallenge.Sales.Application.csproj", "{97F94572-B29C-4F52-8AA1-E1A40DF843B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

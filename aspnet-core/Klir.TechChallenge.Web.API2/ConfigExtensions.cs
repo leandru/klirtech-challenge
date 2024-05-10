@@ -8,7 +8,7 @@ namespace Klir.TechChallenge.Web.API2
 {
     public static class ConfigExtensions
     {
-        public static void UseProductSeedData(this WebApplication app)
+        public static void UseSeedData(this WebApplication app)
         {
             var scope = app.Services.CreateScope();
             var catalogContext = scope.ServiceProvider.GetService<CatalogContext>();

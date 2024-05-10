@@ -12,7 +12,7 @@ builder.Services.AddCatalogServices();
 var app = builder.Build();
 
 
-app.UseProductSeedData();
+app.UseSeedData();
 
 
 if (app.Environment.IsDevelopment())
@@ -30,6 +30,7 @@ app.MapGet("/products", async (IProductAppService productAppService) =>
 })
 .WithName("GetProducts")
 .WithOpenApi();
+
 
 app.Run();
 

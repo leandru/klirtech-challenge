@@ -1,46 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Klir.TechChallenge.Sales.Domain.Entities
 {
     public class Cart
     {
-        public int Id { get; private set; }
+        public Guid Id { get; private set; }
 
-        private List<CartItem> _itens;
-        public IReadOnlyCollection<CartItem> Itens => _itens;
-        public Cart(int id)
+        private List<CartItem> _items;
+        public IReadOnlyCollection<CartItem> Items => _items;
+        public Cart(Guid id)
         {
             Id = id;
-            _itens = new List<CartItem>();
+            _items = new List<CartItem>();
         }
 
         public void AddItem(CartItem item)
         {
-            var foundedItem = _itens.Find(i => i.ProductId == item.ProductId);
-
-            if (foundedItem is null)
-            {
-                _itens.Add(item);
-                return;
-            }
-            foundedItem.SetQuantity(item.Quantity+1);
+            item.AssociateTo(Id);
+            _items.Add(item);            
         }
 
-        public void RemoveItem(int ProductId)
+        public bool RemoveItem(CartItem item)
         {
-            var foundedItem = _itens.Find(i => i.ProductId == ProductId);
-
-            if (foundedItem is not null)
-                _itens.Remove(foundedItem);
+            return  _items.Remove(item);
         }
 
         public void SetQuantity(int productId, int quantity)
         {
-            var foundedItem = _itens.Find(i => i.ProductId == productId);
+            var foundedItem = _items.Find(i => i.ProductId == productId);
 
             if (foundedItem is not null)
                 foundedItem.SetQuantity(quantity);
         }
 
+        public bool Contains(int productId)
+        {
+            return _items.Any( it => it.ProductId == productId);
+        }
+
+        public decimal Total()
+        {
+            return _items.Sum(it => it.ItemTotalPriceWithDiscount());
+        }
     }
 }

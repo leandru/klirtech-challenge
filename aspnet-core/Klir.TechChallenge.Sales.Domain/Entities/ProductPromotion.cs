@@ -1,6 +1,4 @@
-﻿using Klir.TechChallenge.Sales.Domain.Entities;
-
-namespace Klir.TechChallenge.Catalog.Domain.Entities
+﻿namespace Klir.TechChallenge.Sales.Domain.Entities
 {
     public class ProductPromotion
     {
