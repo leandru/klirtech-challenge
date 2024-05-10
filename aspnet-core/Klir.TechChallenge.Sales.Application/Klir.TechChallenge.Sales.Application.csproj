@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\aspnet-core\Klir.TechChallenge.Sales.Domain\Klir.TechChallenge.Sales.Domain.csproj" />
+    <ProjectReference Include="..\Klir.TechChallenge.Sales.Data\Klir.TechChallenge.Sales.Data.csproj" />
+    <ProjectReference Include="..\Klir.TechChallenge.Sales.Domain\Klir.TechChallenge.Sales.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,11 +4,11 @@ using Klir.TechChallenge.Sales.Domain.Interfaces;
 
 namespace Klir.TechChallenge.Sales.Application
 {
-    public class CartService: ICartService
+    public class CartAppService: ICartAppService
     {
         private readonly ICartRepository _cartRepository;
 
-        public CartService(ICartRepository cartRepository)
+        public CartAppService(ICartRepository cartRepository)
         {
             _cartRepository = cartRepository;
         }
@@ -38,7 +38,7 @@ namespace Klir.TechChallenge.Sales.Application
 
         public async Task AddItem(CartItemViewModel item)
         {   
-            var cart = await _cartRepository.GetAsync(item.CartId);
+            var cart = await _cartRepository.GetAsync(item.cartId);
 
             if (cart is null) 
                 cart = await _cartRepository.CreateAsync( new Cart( Guid.NewGuid() ) );
@@ -58,7 +58,7 @@ namespace Klir.TechChallenge.Sales.Application
 
         public async Task RemoveItem(CartItemViewModel item)
         {
-            var cart = await _cartRepository.GetAsync(item.CartId);
+            var cart = await _cartRepository.GetAsync(item.cartId);
 
             if( cart is not null)
             {
@@ -66,5 +66,6 @@ namespace Klir.TechChallenge.Sales.Application
                 _cartRepository.RemoveItem(cartItem);
             }
         }
+
     }
 }

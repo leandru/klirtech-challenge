@@ -1,5 +1,4 @@
-﻿using Klir.TechChallenge.Catalog.Data;
-using Klir.TechChallenge.Sales.Domain.Entities;
+﻿using Klir.TechChallenge.Sales.Domain.Entities;
 using Klir.TechChallenge.Sales.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +30,8 @@ namespace Klir.TechChallenge.Sales.Data.Repositories
             return await _salesContext.Carts
                 .Include( c => c.Items)
                 .ThenInclude( it => it.ProductPromotion)
+                .ThenInclude( pp => pp.Promotion)
+                .ThenInclude( p => p.PromotionType)
                 .FirstOrDefaultAsync( c => c.Id == cartId);
         }
 

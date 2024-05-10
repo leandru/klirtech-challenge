@@ -2,12 +2,12 @@
 
 namespace Klir.TechChallenge.Sales.Application
 {
-    public interface ICartService
+    public interface ICartAppService
     {
-        Task AddItem(CartItemViewModel item);
+        Task AddItem( CartItemViewModel item);
 
         Task RemoveItem(CartItemViewModel item);
 
-       // Task<CartCheckoutResult> CalculateTotal(Guid cartId);
+        Task<CartCheckoutResult> CalculateTotal(Guid cartId);
     }
 }

@@ -1,10 +1,8 @@
-﻿using Klir.TechChallenge.Catalog.Application.Services;
-using Klir.TechChallenge.Catalog.Data.Repositories;
-using Klir.TechChallenge.Catalog.Data;
+﻿using Klir.TechChallenge.Catalog.Data;
 using Klir.TechChallenge.Catalog.Domain;
-using Microsoft.EntityFrameworkCore;
+using Klir.TechChallenge.Sales.Data;
 
-namespace Klir.TechChallenge.Web.API2
+namespace Klir.TechChallenge.Web.API
 {
     public static class ConfigExtensions
     {
@@ -20,6 +18,9 @@ namespace Klir.TechChallenge.Web.API2
             
             catalogContext?.Products.AddRange(products);
             catalogContext?.SaveChanges();
+
+            var salesContext = scope.ServiceProvider.GetService<SalesContext>();
+
         }
     }
 }

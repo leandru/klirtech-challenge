@@ -1,6 +1,6 @@
 ﻿using Klir.TechChallenge.Catalog.Domain;
 
-namespace Klir.TechChallenge.Catalog.Application.Services
+namespace Klir.TechChallenge.Catalog.Application
 {
     public class ProductAppService : IProductAppService
     {
@@ -14,6 +14,11 @@ namespace Klir.TechChallenge.Catalog.Application.Services
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
             return await _productRepository.GetAllAsync();
+        }
+
+        public async Task<Product> GetAsync(int id)
+        {
+            return await _productRepository.GetByIdAsync(id);
         }
     }
 }

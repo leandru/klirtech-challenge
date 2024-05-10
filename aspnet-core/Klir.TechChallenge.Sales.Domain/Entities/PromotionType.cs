@@ -10,12 +10,15 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
             Description = description;
         }
 
+        protected PromotionType()
+        {
+            
+        }
+
         public int Id { get; private set; }
         public string Description { get; private set; }
 
         public abstract decimal CalculateFinalPrice(int quantity, decimal price, int requiredQuantity, int? freeQuantity, decimal? targetPrice);
 
-        /* EF Relations */
-        public virtual IEnumerable<Promotion> Promotions { get; set; }
     }
 }

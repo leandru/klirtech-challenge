@@ -1,5 +1,4 @@
-﻿using Klir.TechChallenge.Catalog.Data;
-using Klir.TechChallenge.Sales.Domain.Entities;
+﻿using Klir.TechChallenge.Sales.Domain.Entities;
 using Klir.TechChallenge.Sales.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

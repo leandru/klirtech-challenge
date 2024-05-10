@@ -1,5 +1,4 @@
-﻿using Klir.TechChallenge.Catalog.Application.Services;
-using Klir.TechChallenge.Catalog.Data.Repositories;
+﻿using Klir.TechChallenge.Catalog.Data.Repositories;
 using Klir.TechChallenge.Catalog.Data;
 using Klir.TechChallenge.Catalog.Domain;
 using Microsoft.Extensions.DependencyInjection;

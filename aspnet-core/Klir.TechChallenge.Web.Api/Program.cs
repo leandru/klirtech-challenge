@@ -1,26 +1,60 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Klir.TechChallenge.Catalog.Application.Configuration;
+using Klir.TechChallenge.Sales.Application.Configuration;
+using Klir.TechChallenge.Web.API;
+using Klir.TechChallenge.Catalog.Application;
+using Klir.TechChallenge.Sales.Application;
+using Klir.TechChallenge.Sales.Application.ViewModels;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Klir.TechChallenge.Web.API.Models;
 
-namespace KlirTechChallenge.Web.Api
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddCatalogServices();
+builder.Services.AddSalesServices();
+
+var app = builder.Build();
+
+
+app.UseSeedData();
+
+
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+
+app.MapGet("/products", async (IProductAppService productAppService) =>
+{
+    return await productAppService.GetAllAsync();
+})
+.WithName("GetProducts")
+.WithOpenApi();
+
+
+app.MapPost("/cart/{cartId}/add", async (ICartAppService cartAppService, 
+                                            IProductAppService productAppService, 
+                                            Guid cartId, Item item) =>
+{
+    var product = await productAppService.GetAsync(item.ProductId);
+    if (product is null)
+        return Results.BadRequest("Product does not exists");
+
+    var cartItem = new CartItemViewModel(cartId, product.Id, product.Name, product.Price, item.Quantity);
+    await cartAppService.AddItem(cartItem);
+    return Results.Ok();
+})
+.WithName("CartAddItem")
+.WithOpenApi();
+
+
+app.Run();
+
+
+
