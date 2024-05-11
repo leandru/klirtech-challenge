@@ -1,4 +1,4 @@
-﻿namespace Klir.TechChallenge.Sales.Application.ViewModels
+﻿namespace Klir.TechChallenge.Sales.Application.Dtos
 {
     public record CartCheckoutResult( IEnumerable<CartCheckoutItem> Items, decimal Total);
 

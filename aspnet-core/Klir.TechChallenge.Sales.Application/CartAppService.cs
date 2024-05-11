@@ -1,4 +1,4 @@
-﻿using Klir.TechChallenge.Sales.Application.ViewModels;
+﻿using Klir.TechChallenge.Sales.Application.Dtos;
 using Klir.TechChallenge.Sales.Domain.Entities;
 using Klir.TechChallenge.Sales.Domain.Interfaces;
 
@@ -13,38 +13,28 @@ namespace Klir.TechChallenge.Sales.Application
             _cartRepository = cartRepository;
         }
 
-        public async Task<CartCheckoutResult> CalculateTotal(Guid cartId)
+        public async Task<bool> Exists(Guid cartId)
         {
-            var cart = await _cartRepository.GetAsync(cartId);
-
-            if (cart is null)
-                return default!;
-
-            var listCheckoutItem = new List<CartCheckoutItem>();
-
-            foreach (var item in cart.Items)
-            {
-                var finalPrice = item.ItemTotalPriceWithDiscount();
-                var promotionName = item.PromotionName();
-
-                var checkoutResultItem = new CartCheckoutItem(item.ProductId, item.ProductName, item.Quantity, item.Price, finalPrice, promotionName);
-                listCheckoutItem.Add(checkoutResultItem);
-            }
-
-            var checkoutResult = new CartCheckoutResult(listCheckoutItem, cart.Total());
-
-            return checkoutResult;
+            return await _cartRepository.Exists(cartId);
         }
 
+        public async Task<Cart> GetAsync(Guid cartId)
+        {
+            return await _cartRepository.GetAsync(cartId);
+        }
+       
         public async Task AddItem(CartItemViewModel item)
         {   
             var cart = await _cartRepository.GetAsync(item.cartId);
 
             if (cart is null) 
-                cart = await _cartRepository.CreateAsync( new Cart( Guid.NewGuid() ) );
+                cart = await _cartRepository.CreateAsync( new Cart(item.cartId) );
 
-            if( cart.Contains(item.ProductId) ){
-                cart.SetQuantity(item.ProductId, item.Quantity);
+            var cartItem = cart.Items.FirstOrDefault( it => it.ProductId == item.ProductId );
+
+            if(cartItem is not null)
+            {
+                cart.SetQuantity(item.ProductId, cartItem.Quantity + 1);
                 _cartRepository.UpdateItem(cart.Items.First(it => it.ProductId == item.ProductId));
             }
             else { 
@@ -65,7 +55,33 @@ namespace Klir.TechChallenge.Sales.Application
                 var cartItem = cart.Items.FirstOrDefault(it => it.ProductId == item.ProductId);
                 _cartRepository.RemoveItem(cartItem);
             }
+            await _cartRepository.CommitAsync();
         }
+
+        public async Task<CartCheckoutResult> CalculateTotal(Guid cartId)
+        {
+            var cart = await _cartRepository.GetAsync(cartId);
+
+            if (cart is null)
+                return default!;
+
+            var listCheckoutItem = new List<CartCheckoutItem>();
+
+            foreach (var item in cart.Items)
+            {
+                var finalPrice = item.TotalWithDiscount();
+                
+                var promotionApplied = item.Total() - item.TotalWithDiscount() > 0 ? item.PromotionName() : string.Empty;
+
+                var checkoutResultItem = new CartCheckoutItem(item.ProductId, item.ProductName, item.Quantity, item.Price, finalPrice, promotionApplied);
+                listCheckoutItem.Add(checkoutResultItem);
+            }
+
+            var checkoutResult = new CartCheckoutResult(listCheckoutItem, cart.Total());
+
+            return checkoutResult;
+        }
+
 
     }
 }

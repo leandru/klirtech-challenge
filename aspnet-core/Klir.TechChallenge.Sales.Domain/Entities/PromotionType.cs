@@ -10,11 +10,6 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
             Description = description;
         }
 
-        protected PromotionType()
-        {
-            
-        }
-
         public int Id { get; private set; }
         public string Description { get; private set; }
 

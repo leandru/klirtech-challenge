@@ -13,9 +13,14 @@ namespace Klir.TechChallenge.Sales.Data.Repositories
             _salesContext = salexContext;
         }
 
+        public async Task<bool> Exists(Guid id)
+        {
+            return await _salesContext.Carts.AnyAsync( c => c.Id == id );
+        }
+
         public async Task<Cart> CreateAsync(Cart cart)
         {
-            var result = await _salesContext.Carts.AddAsync(cart);
+            var result =  await _salesContext.Carts.AddAsync(cart);
 
             return result.Entity;
         }
@@ -27,12 +32,13 @@ namespace Klir.TechChallenge.Sales.Data.Repositories
 
         public async Task<Cart?> GetAsync(Guid cartId)
         {
-            return await _salesContext.Carts
-                .Include( c => c.Items)
-                .ThenInclude( it => it.ProductPromotion)
-                .ThenInclude( pp => pp.Promotion)
-                .ThenInclude( p => p.PromotionType)
-                .FirstOrDefaultAsync( c => c.Id == cartId);
+            var cart = await _salesContext.Carts
+                .Include(c => c.Items)
+                .ThenInclude(it => it.ProductPromotion)
+                .ThenInclude(pp => pp.Promotion)
+                .ThenInclude(p => p.PromotionType) 
+                .FirstOrDefaultAsync(c => c.Id == cartId); 
+            return cart;
         }
 
         public void RemoveItem(CartItem item)
@@ -55,5 +61,6 @@ namespace Klir.TechChallenge.Sales.Data.Repositories
             _salesContext.Carts.Update(cart);
         }
 
+ 
     }
 }

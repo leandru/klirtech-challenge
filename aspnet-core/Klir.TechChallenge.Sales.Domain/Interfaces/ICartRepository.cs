@@ -6,6 +6,8 @@ namespace Klir.TechChallenge.Sales.Domain.Interfaces
 {
     public interface ICartRepository
     {
+        Task<bool> Exists(Guid id);    
+
         Task<Cart> GetAsync(Guid cartId);
 
         Task<Cart> CreateAsync(Cart cart);

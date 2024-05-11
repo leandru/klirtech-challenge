@@ -42,7 +42,7 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
 
         public decimal Total()
         {
-            return _items.Sum(it => it.ItemTotalPriceWithDiscount());
+            return _items.Sum(it => it.TotalWithDiscount());
         }
     }
 }

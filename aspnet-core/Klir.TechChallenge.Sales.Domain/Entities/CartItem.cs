@@ -27,12 +27,12 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
             CartId = cartId;
         }
 
-        public decimal ItemTotalPrice()
+        public decimal Total()
         {
             return Quantity * Price;
         }
 
-        public decimal ItemTotalPriceWithDiscount()
+        public decimal TotalWithDiscount()
         {
             return ProductPromotion.Promotion.GetPriceWithDiscount(Quantity, Price);
         }
