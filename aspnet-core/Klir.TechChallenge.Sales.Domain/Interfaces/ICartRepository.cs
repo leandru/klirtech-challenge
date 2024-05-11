@@ -10,13 +10,13 @@ namespace Klir.TechChallenge.Sales.Domain.Interfaces
 
         Task<Cart> GetAsync(Guid cartId);
 
-        Task<Cart> CreateAsync(Cart cart);
+        Task CreateAsync(Cart cart);
 
         void Update(Cart cart);
 
         Task AddItemAsync( CartItem item);
 
-        void RemoveItem ( CartItem item);
+        void RemoveItem (CartItem item);
 
         void UpdateItem( CartItem item);
 

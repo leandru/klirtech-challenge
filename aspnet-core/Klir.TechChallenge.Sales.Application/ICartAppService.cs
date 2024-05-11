@@ -9,9 +9,11 @@ namespace Klir.TechChallenge.Sales.Application
 
         Task<bool> Exists(Guid cartId);
 
-        Task AddItem( CartItemViewModel item);
+        Task AddItem( CartAddItemViewModel item);
 
-        Task RemoveItem(CartItemViewModel item);
+        Task RemoveItem(CartItem item);
+
+        Task UpdateItem(CartItem item);
 
         Task<CartCheckoutResult> CalculateTotal(Guid cartId);
     }

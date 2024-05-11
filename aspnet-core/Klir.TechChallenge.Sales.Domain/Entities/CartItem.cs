@@ -34,7 +34,12 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
 
         public decimal TotalWithDiscount()
         {
-            return ProductPromotion.Promotion.GetPriceWithDiscount(Quantity, Price);
+            if ( ProductPromotion is ProductPromotion productPromotion)
+            {
+                return productPromotion.Promotion.GetPriceWithDiscount(Quantity, Price);
+            }
+
+            return Total();
         }
 
         public string PromotionName()

@@ -16,6 +16,7 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
             _items = new List<CartItem>();
         }
 
+
         public void AddItem(CartItem item)
         {
             item.AssociateTo(Id);
@@ -25,6 +26,11 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
         public bool RemoveItem(CartItem item)
         {
             return  _items.Remove(item);
+        }
+
+        public CartItem GetItem(int productItem)
+        {
+            return _items.FirstOrDefault(it => it.ProductId == productItem);
         }
 
         public void SetQuantity(int productId, int quantity)
@@ -41,6 +47,11 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
         }
 
         public decimal Total()
+        {
+            return _items.Sum(it => it.Total());
+        }
+
+        public decimal TotalWithDiscount()
         {
             return _items.Sum(it => it.TotalWithDiscount());
         }

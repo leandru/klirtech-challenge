@@ -5,15 +5,14 @@ namespace Klir.TechChallenge.Sales.Application.Mappings
 {
     public static class CartMappings
     {
-        public static CartItemViewModel ToDto( this CartItem item)
+        public static CartItemViewModelResult ToDto( this CartItem item)
         {
-            return new CartItemViewModel(item.CartId, item.ProductId, item.ProductName, item.Price, item.Quantity);
+            return new CartItemViewModelResult(item.ProductId, item.ProductName, item.Price, item.Quantity, item.Total());
         }
 
-        //public static CartViewModel ToDto(this Cart item)
-        //{
-        //    //var 
-        //    //return new CartItemViewModel(item.CartId, item.ProductId, item.ProductName, item.Price, item.Quantity);
-        //}
+        public static CartViewModel ToDto(this Cart cart)
+        {
+            return new CartViewModel(cart.Id, cart.Items.Select(it => it.ToDto()), cart.Total());
+        }
     }
 }

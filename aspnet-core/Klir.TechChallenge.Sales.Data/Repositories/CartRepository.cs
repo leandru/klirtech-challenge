@@ -18,11 +18,9 @@ namespace Klir.TechChallenge.Sales.Data.Repositories
             return await _salesContext.Carts.AnyAsync( c => c.Id == id );
         }
 
-        public async Task<Cart> CreateAsync(Cart cart)
+        public async Task CreateAsync(Cart cart)
         {
-            var result =  await _salesContext.Carts.AddAsync(cart);
-
-            return result.Entity;
+            await _salesContext.Carts.AddAsync(cart);
         }
 
         public async Task AddItemAsync(CartItem item)

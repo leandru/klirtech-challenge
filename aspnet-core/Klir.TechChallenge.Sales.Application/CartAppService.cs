@@ -23,12 +23,14 @@ namespace Klir.TechChallenge.Sales.Application
             return await _cartRepository.GetAsync(cartId);
         }
        
-        public async Task AddItem(CartItemViewModel item)
+        public async Task AddItem(CartAddItemViewModel item)
         {   
             var cart = await _cartRepository.GetAsync(item.cartId);
 
-            if (cart is null) 
-                cart = await _cartRepository.CreateAsync( new Cart(item.cartId) );
+            if (cart is null) { 
+                cart = new Cart( item.cartId );
+                await _cartRepository.CreateAsync(cart);
+            }
 
             var cartItem = cart.Items.FirstOrDefault( it => it.ProductId == item.ProductId );
 
@@ -46,24 +48,21 @@ namespace Klir.TechChallenge.Sales.Application
             await _cartRepository.CommitAsync();
         }
 
-        public async Task RemoveItem(CartItemViewModel item)
+        public async Task RemoveItem(CartItem item)
         {
-            var cart = await _cartRepository.GetAsync(item.cartId);
+            _cartRepository.RemoveItem(item);
+            await _cartRepository.CommitAsync();
+        }
 
-            if( cart is not null)
-            {
-                var cartItem = cart.Items.FirstOrDefault(it => it.ProductId == item.ProductId);
-                _cartRepository.RemoveItem(cartItem);
-            }
+        public async Task UpdateItem(CartItem item)
+        {
+            _cartRepository.UpdateItem(item);      
             await _cartRepository.CommitAsync();
         }
 
         public async Task<CartCheckoutResult> CalculateTotal(Guid cartId)
         {
             var cart = await _cartRepository.GetAsync(cartId);
-
-            if (cart is null)
-                return default!;
 
             var listCheckoutItem = new List<CartCheckoutItem>();
 
@@ -77,7 +76,8 @@ namespace Klir.TechChallenge.Sales.Application
                 listCheckoutItem.Add(checkoutResultItem);
             }
 
-            var checkoutResult = new CartCheckoutResult(listCheckoutItem, cart.Total());
+            var discount = cart.Total() - cart.TotalWithDiscount();
+            var checkoutResult = new CartCheckoutResult(listCheckoutItem, cart.Total(), discount, cart.TotalWithDiscount());
 
             return checkoutResult;
         }

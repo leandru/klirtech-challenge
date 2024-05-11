@@ -1,6 +1,8 @@
 ﻿using Klir.TechChallenge.Catalog.Application;
 using Klir.TechChallenge.Sales.Application;
 using Klir.TechChallenge.Sales.Application.Dtos;
+using Klir.TechChallenge.Sales.Application.Mappings;
+using Klir.TechChallenge.Web.API.Models;
 
 namespace Klir.TechChallenge.Web.API
 {
@@ -30,10 +32,10 @@ namespace Klir.TechChallenge.Web.API
                     return Results.NotFound();
 
 
+                return Results.Ok(cart.ToDto());
 
-                return Results.Ok(cart);
-
-            }).WithName("GetCart")
+            }).Produces<CartViewModel>()
+           .WithName("GetCart")
            .WithOpenApi();
 
 
@@ -52,43 +54,64 @@ namespace Klir.TechChallenge.Web.API
            .WithOpenApi();
 
 
-
-            app.MapPost("/cart/{cartId}/items/{productId}", async (ICartAppService cartAppService,
+            app.MapPost("/cart/{cartId}/items", async (ICartAppService cartAppService,
                                                         IProductAppService productAppService,
-                                                        Guid cartId, int productId) =>
+                                                        Guid cartId, ProductViewModel productViewModel ) =>
             {                
-                var product = await productAppService.GetAsync(productId);
+                var product = await productAppService.GetAsync(productViewModel.ProductId);
                 if (product is null)
                     return Results.BadRequest("Invalid data!");
 
-                var cartItem = new CartItemViewModel(cartId, product.Id, product.Name, product.Price, 1);
+                var cartItem = new CartAddItemViewModel(cartId, product.Id, product.Name, product.Price, 1);
                 await cartAppService.AddItem(cartItem);
                 
-                return Results.Created();
+                return Results.Ok();
             })
             .WithName("CartAddItem")
             .WithOpenApi();
+
+
+            app.MapPatch("/cart/{cartId}/items/{productId}/quantity/{quantity}", async (ICartAppService cartAppService,
+                                                      IProductAppService productAppService,
+                                                      Guid cartId, int productId, int quantity) =>
+            {
+                var cart = await cartAppService.GetAsync(cartId);
+
+                if (cart is null)
+                    return Results.NotFound();
+
+                var cartItem = cart.GetItem(productId);
+                if (cartItem is null)
+                    return Results.NotFound();
+
+                cartItem.SetQuantity(quantity);
+                await cartAppService.UpdateItem(cartItem);
+
+                return Results.Ok();
+            })
+          .WithName("CartSetItemQuantity")
+          .WithOpenApi();
 
 
             app.MapDelete("/cart/{cartId}/items/{productId}", async (ICartAppService cartAppService,
                                                     IProductAppService productAppService,
                                                     Guid cartId, int productId) =>
             {
-                if (!await cartAppService.Exists(cartId))
+                var cart = await cartAppService.GetAsync(cartId);
+
+                if (cart is null)
                     return Results.NotFound();
 
-                var product = await productAppService.GetAsync(productId);
-                if (product is null)
-                    return Results.BadRequest("Invalid data!");
+                var cartItem = cart.GetItem(productId);
+                if (cartItem is null)
+                    return Results.NotFound();
 
-                var cartItem = new CartItemViewModel(cartId, product.Id, product.Name, product.Price, 1);
                 await cartAppService.RemoveItem(cartItem);
 
                 return Results.NoContent();
             })
             .WithName("CartRemoveItem")
             .WithOpenApi();
-
 
             #endregion
 
