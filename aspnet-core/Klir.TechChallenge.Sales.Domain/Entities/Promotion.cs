@@ -1,4 +1,7 @@
-﻿namespace Klir.TechChallenge.Sales.Domain.Entities
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace Klir.TechChallenge.Sales.Domain.Entities
 {
     public class Promotion
     {

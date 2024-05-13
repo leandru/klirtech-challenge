@@ -1,4 +1,5 @@
 ﻿using Klir.TechChallenge.Sales.Application.Dtos;
+using Klir.TechChallenge.Sales.Data.Repositories;
 using Klir.TechChallenge.Sales.Domain.Entities;
 using Klir.TechChallenge.Sales.Domain.Interfaces;
 
@@ -7,10 +8,12 @@ namespace Klir.TechChallenge.Sales.Application
     public class CartAppService: ICartAppService
     {
         private readonly ICartRepository _cartRepository;
+        private readonly IProductPromotionRepository _productPromotionRepository;
 
-        public CartAppService(ICartRepository cartRepository)
+        public CartAppService(ICartRepository cartRepository, IProductPromotionRepository productPromotionRepository)
         {
             _cartRepository = cartRepository;
+            _productPromotionRepository = productPromotionRepository;
         }
 
         public async Task<bool> Exists(Guid cartId)
@@ -39,8 +42,9 @@ namespace Klir.TechChallenge.Sales.Application
                 cart.SetQuantity(item.ProductId, cartItem.Quantity + 1);
                 _cartRepository.UpdateItem(cart.Items.First(it => it.ProductId == item.ProductId));
             }
-            else { 
-                var newItem = new CartItem(item.ProductId, item.ProductName, item.Price, item.Quantity);
+            else {
+                var productPromotion = await _productPromotionRepository.GetProductPromotionAsync(item.ProductId);
+                var newItem = new CartItem(item.ProductId, item.ProductName, item.Price, item.Quantity, productPromotion?.Id);
                 cart.AddItem(newItem);
                 var addedItem = cart.Items.First(it => it.ProductId == item.ProductId);
                 await _cartRepository.AddItemAsync(newItem);  

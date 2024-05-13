@@ -29,20 +29,20 @@ namespace Klir.TechChallenge.Sales.Data
             modelBuilder.Entity<CartItem>().HasKey(it => it.ProductId);
             modelBuilder.Entity<CartItem>()
                 .HasOne(p => p.ProductPromotion)
-                .WithOne()
-                .HasForeignKey<ProductPromotion>(p => p.ProductId);
+                .WithMany()
+                .HasForeignKey(pp => pp.ProductId).IsRequired(false);
 
             modelBuilder.Entity<ProductPromotion>().HasKey(p => p.ProductId);
             modelBuilder.Entity<ProductPromotion>()
                 .HasOne(pp => pp.Promotion)
-                .WithOne()
-                .HasForeignKey<Promotion>(p => p.Id);
+                .WithMany()
+                .HasForeignKey(p => p.PromotionId);
 
             modelBuilder.Entity<Promotion>().HasKey(p => p.Id);
             modelBuilder.Entity<Promotion>()
                 .HasOne(pp => pp.PromotionType)
-                .WithOne()
-                .HasForeignKey<PromotionType>(pt => pt.Id);
+                .WithMany()
+                .HasForeignKey(pt => pt.PromotionTypeId);
 
             modelBuilder.Entity<PromotionType>()
                 .HasDiscriminator<string>("promotion_type")

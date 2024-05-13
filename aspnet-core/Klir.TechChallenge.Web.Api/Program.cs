@@ -10,7 +10,19 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCatalogServices();
 builder.Services.AddSalesServices();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
+
 
 
 app.UseSeededData();
@@ -22,7 +34,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors();
+
+//app.UseHttpsRedirection();
 
 
 app.UseEndpoints();

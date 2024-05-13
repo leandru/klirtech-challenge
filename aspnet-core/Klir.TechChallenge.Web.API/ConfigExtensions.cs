@@ -15,7 +15,7 @@ namespace Klir.TechChallenge.Web.API
             Product[] products = [new Product(1, "Product A", 20),
                                     new Product(2, "Product B", 4),
                                     new Product(3, "Product C", 2),
-                                    new Product(4, "Product C", 4)];
+                                    new Product(4, "Product D", 4)];
             
             catalogContext?.Products.AddRange(products);
             catalogContext?.SaveChanges();
@@ -30,7 +30,7 @@ namespace Klir.TechChallenge.Web.API
             var promotion2 = new Promotion(2, "3 for 10 Euro", promotionType2, 3, 10m);
             Promotion[] promotions = [promotion, promotion2];
 
-            ProductPromotion[] productPromotions = [new ProductPromotion(1, 1), new ProductPromotion(2, 2), new ProductPromotion(4, 2)];
+            ProductPromotion[] productPromotions = [new ProductPromotion(1,1, 1), new ProductPromotion(2,2, 2), new ProductPromotion(3,4, 2)];
 
             salesContext?.PromotionTypes.AddRange(promotionsTypes);
 

@@ -13,6 +13,7 @@ namespace Klir.TechChallenge.Sales.Application.Configuration
 
             services.AddDbContext<SalesContext>(opt => opt.UseInMemoryDatabase("SalesDB"));
 
+            services.AddTransient<IProductPromotionRepository, ProductPromotionRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICartAppService, CartAppService>();
 

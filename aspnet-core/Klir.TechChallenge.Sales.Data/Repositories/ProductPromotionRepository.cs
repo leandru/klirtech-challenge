@@ -13,12 +13,9 @@ namespace Klir.TechChallenge.Sales.Data.Repositories
             _salesContext = salesContext;
         }
 
-        public async Task<IEnumerable<ProductPromotion>> GetProductPromotionAsync(int[] productId)
+        public async Task<ProductPromotion?> GetProductPromotionAsync(int productId)
         {
-            return await _salesContext.ProductsPromotions
-                .Where( pp => productId.Contains(pp.ProductId))
-                .Include( pp => pp.Promotion )
-                .ToListAsync();
+            return await _salesContext.ProductsPromotions.FindAsync(productId);
         }
     }
 }
