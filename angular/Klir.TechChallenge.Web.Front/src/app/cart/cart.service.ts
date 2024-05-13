@@ -24,7 +24,7 @@ constructor(private http: HttpClient) { }
     }
 
     setQuantity(productId: number, quantity: number){
-        return this.http.patch(this.UrlServiceV1 + "/cart/456ac843-3859-492f-b855-7229b9d81d73/items/" +productId + "/quantity/" + quantity,null).subscribe()
+        return this.http.patch<number>(this.UrlServiceV1 + "/cart/456ac843-3859-492f-b855-7229b9d81d73/items/" +productId + "/quantity/" + quantity,null)
     }
 
 }

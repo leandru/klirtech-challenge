@@ -22,11 +22,10 @@ export class CartComponent implements OnInit {
   
   constructor(private cartService: CartService) { }
 
-  cart?: Cart;
+  items: CartItem[] = [];
 
   ngOnInit() {
-    this.cartService.getCart("456ac843-3859-492f-b855-7229b9d81d73")
-      .subscribe( c => this.cart = c);
+    this.cartService.getCart("456ac843-3859-492f-b855-7229b9d81d73").subscribe( c => {this.items = c.items});
   }
   
   onSelectionChange(event: any) {
@@ -34,35 +33,31 @@ export class CartComponent implements OnInit {
     let productId = event[1];
 
     this.setQuantityOfItem(productId, quantity);
-    
-    this.cart?.items.map( it => {
-      if(it.productId == productId){
-        
-      }
-    });
   }
   
   removeItemFromCart( productId: number){
-    let indexToRemove = this.cart?.items.findIndex(item => item.productId === productId);
+    let indexToRemove = this.items.findIndex(item => item.productId === productId);
     if (indexToRemove !== -1) {
-      this.cart?.items.splice( indexToRemove == undefined ? 0 : indexToRemove, 1  )
+      this.items.splice( indexToRemove == undefined ? 0 : indexToRemove, 1  )
     }
     this.cartService.remove(productId);
   }
 
   setQuantityOfItem( productId:number, quantity:number){
-    this.cartService.setQuantity(productId,quantity);
+    this.cartService.setQuantity(productId,quantity).subscribe( r => this.items.map( it => {
+      if(it.productId == productId) it.total = r;
+    }));
   }
 
   finalPriceWithDiscount(){
     let total = 0;
-    this.cart?.items.map( it => total += it.total)
+    this.items.map( it => total += it.total)
     return total;
   }
 
   finalPrice(){
     let total = 0;
-    this.cart?.items.map( it => total += it.quantity * it.price)
+    this.items.map( it => total += it.quantity * it.price)
     return total;
   }
 
