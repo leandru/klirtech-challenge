@@ -13,7 +13,7 @@ namespace Klir.TechChallenge.Sales.Application
 
         Task RemoveItem(CartItem item);
 
-        Task UpdateItem(CartItem item);
+        Task<decimal> UpdateItem(CartItem item);
 
         Task<CartCheckoutResult> CalculateTotal(Guid cartId);
     }

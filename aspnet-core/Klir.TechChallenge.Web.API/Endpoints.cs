@@ -87,7 +87,7 @@ namespace Klir.TechChallenge.Web.API
                 cartItem.SetQuantity(quantity);
                 await cartAppService.UpdateItem(cartItem);
 
-                return Results.Ok();
+                return Results.Ok(cartItem.TotalWithDiscount());
             })
           .WithName("CartSetItemQuantity")
           .WithOpenApi();

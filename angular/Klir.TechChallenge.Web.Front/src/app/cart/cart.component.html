@@ -4,24 +4,24 @@
 <div class="container">
     <div class="row">
         <div class="col-xl-8">
-            <div class="card border shadow-none">
+            <div *ngFor="let item of cart?.items" class="card border shadow-none">
                 <div class="card-body">
-
+                    
                     <div class="d-flex align-items-start border-bottom pb-3">
                         <div class="me-4">
                             <img src="https://www.bootdey.com/image/380x380/008B8B/000000" alt="" class="avatar-lg rounded">
                         </div>
                         <div class="flex-grow-1 align-self-center overflow-hidden">
                             <div>
-                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Waterproof Mobile Phone </a></h5>
+                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">{{item.productName}} </a></h5>
                              
-                                <p class="mb-0 mt-1">Promotion : <span class="fw-medium">Gray</span></p>
+                                <p *ngIf="item.promotionApplied != ''" class="mb-0 mt-1">Promotion: <span class="fw-medium">{{item.promotionApplied}}</span></p>
                             </div>
                         </div>
                         <div class="flex-shrink-0 ms-2">
                             <ul class="list-inline mb-0 font-size-16">
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-muted px-1">
+                                    <a (click)="removeItemFromCart(item.productId)" class="text-muted px-1">
                                         <i class="mdi mdi-trash-can-outline"></i>
                                     </a>
                                 </li>
@@ -34,22 +34,25 @@
                             <div class="col-md-4">
                                 <div class="mt-3">
                                     <p class="text-muted mb-2">Price</p>
-                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"></span>$450</h5>
+                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"></span>${{item.price}}</h5>
                                 </div>
                             </div>
+                          
                             <div class="col-md-5">
                                 <div class="mt-3">
                                     <p class="text-muted mb-2">Quantity</p>
                                     <div class="d-inline-flex">
-                                        <select class="form-select form-select-sm w-xl">
-                                            <option value="1">1</option>
-                                            <option value="2" selected="">2</option>
+                                        <select [(ngModel)]="item.quantity" (change)="onSelectionChange([$event, item.productId])" class="form-select form-select-sm w-xl">
+                                            <option  value="1">1</option>
+                                            <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
                                             <option value="7">7</option>
                                             <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
                                         </select>
                                     </div>
                                 </div>
@@ -57,7 +60,7 @@
                             <div class="col-md-3">
                                 <div class="mt-3">
                                     <p class="text-muted mb-2">Total</p>
-                                    <h5>$900</h5>
+                                    <h5>{{item.total}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -71,12 +74,6 @@
                 <div class="col-sm-6">
                     <a href="#" class="btn btn-link text-muted">
                         <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-                </div> 
-                <div class="col-sm-6">
-                    <div class="text-sm-end mt-2 mt-sm-0">
-                        <a href="#" class="btn btn-success">
-                        <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
-                    </div>
                 </div> 
             </div> 
         </div>
@@ -94,17 +91,14 @@
                                 <tbody>
                                     <tr>
                                         <td>Sub Total :</td>
-                                        <td class="text-end">$ 780</td>
+                                        <td class="text-end">$ {{finalPrice()}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Discount : </td>
-                                        <td class="text-end">- $ 78</td>
-                                    </tr>
+             
                                     <tr class="bg-light">
                                         <th>Total :</th>
                                         <td class="text-end">
                                             <span class="fw-bold">
-                                                $ 745.2
+                                                $ {{finalPriceWithDiscount()}}
                                             </span>
                                         </td>
                                     </tr>

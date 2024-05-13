@@ -58,10 +58,11 @@ namespace Klir.TechChallenge.Sales.Application
             await _cartRepository.CommitAsync();
         }
 
-        public async Task UpdateItem(CartItem item)
+        public async Task<decimal> UpdateItem(CartItem item)
         {
             _cartRepository.UpdateItem(item);      
             await _cartRepository.CommitAsync();
+            return item.TotalWithDiscount();
         }
 
         public async Task<CartCheckoutResult> CalculateTotal(Guid cartId)

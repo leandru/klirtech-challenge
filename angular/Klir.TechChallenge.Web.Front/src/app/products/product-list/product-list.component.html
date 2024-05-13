@@ -4,9 +4,7 @@
         
         <div *ngFor="let product of products" class="col-md-4" style="padding-bottom: 30px;">
             <div class="card h-100">
-                <a class="text-decoration-none" [routerLink]="['/product-detail', product.id]">
-                    IMG
-                </a>
+       
                 <h4 class="card-title">{{ product.name | titlecase }}</h4>
 
 
