@@ -26,7 +26,7 @@ namespace Klir.TechChallenge.Sales.Data
                 .HasMany(it => it.Items)
                 .WithOne().HasForeignKey(it => it.CartId);
 
-            modelBuilder.Entity<CartItem>().HasKey(it => it.ProductId);
+            modelBuilder.Entity<CartItem>().HasKey(it => new { it.CartId, it.ProductId });
             modelBuilder.Entity<CartItem>()
                 .HasOne(p => p.ProductPromotion)
                 .WithMany()

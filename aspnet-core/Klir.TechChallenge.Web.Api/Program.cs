@@ -43,5 +43,4 @@ app.UseEndpoints();
 
 app.Run();
 
-
-
+public partial class Program { }

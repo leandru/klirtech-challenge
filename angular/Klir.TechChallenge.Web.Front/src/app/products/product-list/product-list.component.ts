@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../product.service';
-import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Product } from '../product';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -18,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  products?: Product[];
+  products: Product[]  = [];
 
   ngOnInit() {
     this.productService.getProducts()

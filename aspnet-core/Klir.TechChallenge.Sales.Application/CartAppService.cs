@@ -1,5 +1,4 @@
 ﻿using Klir.TechChallenge.Sales.Application.Dtos;
-using Klir.TechChallenge.Sales.Data.Repositories;
 using Klir.TechChallenge.Sales.Domain.Entities;
 using Klir.TechChallenge.Sales.Domain.Interfaces;
 
@@ -58,11 +57,18 @@ namespace Klir.TechChallenge.Sales.Application
             await _cartRepository.CommitAsync();
         }
 
-        public async Task<decimal> UpdateItem(CartItem item)
+        public async Task<CartUpdatedItem> UpdateItem(CartItem item)
         {
             _cartRepository.UpdateItem(item);      
             await _cartRepository.CommitAsync();
-            return item.TotalWithDiscount();
+
+            var promotionName = string.Empty;
+            if (item.TotalWithDiscount() < item.Quantity * item.Price)
+            {
+                promotionName = item.PromotionName();
+            }
+
+            return new CartUpdatedItem(item.ProductId, item.TotalWithDiscount(), promotionName);
         }
 
         public async Task<CartCheckoutResult> CalculateTotal(Guid cartId)

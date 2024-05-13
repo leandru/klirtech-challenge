@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{999D48DF-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{C51C41D1-42C6-4690-9847-B372BAD06101}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Tests", "aspnet-core\Klir.TechChallenge.Tests\Klir.TechChallenge.Tests.csproj", "{2698738B-6626-4968-814F-6B22068ACAEF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{E52041FB-CC13-4F1D-8AFA-7EAAA06B6768}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "catalog", "catalog", "{17EA4A09-3ABA-42FE-9037-87641C622B4A}"
@@ -35,16 +33,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Sales.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klir.TechChallenge.Web.Front", "angular\Klir.TechChallenge.Web.Front\Klir.TechChallenge.Web.Front.csproj", "{AEE3F4FD-EF6D-459D-8E3D-9329EF8EDFE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klir.TechChallenge.Tests", "aspnet-core\Klir.TechChallenge.Tests\Klir.TechChallenge.Tests.csproj", "{8CA3AB19-96C2-4906-A827-E8F025FA90A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2698738B-6626-4968-814F-6B22068ACAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2698738B-6626-4968-814F-6B22068ACAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2698738B-6626-4968-814F-6B22068ACAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2698738B-6626-4968-814F-6B22068ACAEF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B25FCC21-390A-43CA-934D-301C35699448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B25FCC21-390A-43CA-934D-301C35699448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B25FCC21-390A-43CA-934D-301C35699448}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,12 +77,15 @@ Global
 		{AEE3F4FD-EF6D-459D-8E3D-9329EF8EDFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEE3F4FD-EF6D-459D-8E3D-9329EF8EDFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEE3F4FD-EF6D-459D-8E3D-9329EF8EDFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA3AB19-96C2-4906-A827-E8F025FA90A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA3AB19-96C2-4906-A827-E8F025FA90A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA3AB19-96C2-4906-A827-E8F025FA90A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA3AB19-96C2-4906-A827-E8F025FA90A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2698738B-6626-4968-814F-6B22068ACAEF} = {999D48DF-22BC-40B8-A8C4-A9B5760B77AC}
 		{E52041FB-CC13-4F1D-8AFA-7EAAA06B6768} = {F332D047-B9A7-4B85-8359-9328589BED29}
 		{17EA4A09-3ABA-42FE-9037-87641C622B4A} = {E52041FB-CC13-4F1D-8AFA-7EAAA06B6768}
 		{AFC03666-2AC8-4297-8EC8-E1CAF486B909} = {E52041FB-CC13-4F1D-8AFA-7EAAA06B6768}
@@ -99,6 +98,7 @@ Global
 		{3E65E4A1-632E-4D50-84FE-E22ABBC905C0} = {F332D047-B9A7-4B85-8359-9328589BED29}
 		{9109481A-60AC-4D45-92D8-6268A6DF36C0} = {AFC03666-2AC8-4297-8EC8-E1CAF486B909}
 		{AEE3F4FD-EF6D-459D-8E3D-9329EF8EDFE6} = {C51C41D1-42C6-4690-9847-B372BAD06101}
+		{8CA3AB19-96C2-4906-A827-E8F025FA90A2} = {999D48DF-22BC-40B8-A8C4-A9B5760B77AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B22C9792-C11E-4F83-91D8-5ACFDDC0FC5E}

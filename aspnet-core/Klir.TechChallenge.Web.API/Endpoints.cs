@@ -35,8 +35,8 @@ namespace Klir.TechChallenge.Web.API
                 return Results.Ok(cart.ToDto());
 
             }).Produces<CartViewModel>()
-           .WithName("GetCart")
-           .WithOpenApi();
+            .WithName("GetCart")
+            .WithOpenApi();
 
 
             app.MapGet("cart/{cartId}/checkout", async (ICartAppService cartAppService,
@@ -50,8 +50,8 @@ namespace Klir.TechChallenge.Web.API
                 return Results.Ok(checkoutResult);
 
             }).Produces<CartCheckoutResult>()
-           .WithName("GetCartCheckout")
-           .WithOpenApi();
+            .WithName("GetCartCheckout")
+            .WithOpenApi();
 
 
             app.MapPost("/cart/{cartId}/items", async (ICartAppService cartAppService,
@@ -72,8 +72,8 @@ namespace Klir.TechChallenge.Web.API
 
 
             app.MapPatch("/cart/{cartId}/items/{productId}/quantity/{quantity}", async (ICartAppService cartAppService,
-                                                      IProductAppService productAppService,
-                                                      Guid cartId, int productId, int quantity) =>
+                                                        IProductAppService productAppService,
+                                                        Guid cartId, int productId, int quantity) =>
             {
                 var cart = await cartAppService.GetAsync(cartId);
 
@@ -85,12 +85,12 @@ namespace Klir.TechChallenge.Web.API
                     return Results.NotFound();
 
                 cartItem.SetQuantity(quantity);
-                await cartAppService.UpdateItem(cartItem);
-
-                return Results.Ok(cartItem.TotalWithDiscount());
+               
+                return Results.Ok(await cartAppService.UpdateItem(cartItem));
             })
-          .WithName("CartSetItemQuantity")
-          .WithOpenApi();
+            .Produces<CartUpdatedItem>()
+            .WithName("CartSetItemQuantity")
+            .WithOpenApi();
 
 
             app.MapDelete("/cart/{cartId}/items/{productId}", async (ICartAppService cartAppService,

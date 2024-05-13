@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { HttpClient } from '@angular/common/http';
-import { Cart, CartItem } from './cart';
+import { CartItem } from './cart';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NgModel } from '@angular/forms';
 
 
 @Component({
@@ -25,7 +24,7 @@ export class CartComponent implements OnInit {
   items: CartItem[] = [];
 
   ngOnInit() {
-    this.cartService.getCart("456ac843-3859-492f-b855-7229b9d81d73").subscribe( c => {this.items = c.items});
+    this.cartService.getCart().subscribe( c => {this.items = c.items});
   }
   
   onSelectionChange(event: any) {
@@ -44,8 +43,13 @@ export class CartComponent implements OnInit {
   }
 
   setQuantityOfItem( productId:number, quantity:number){
-    this.cartService.setQuantity(productId,quantity).subscribe( r => this.items.map( it => {
-      if(it.productId == productId) it.total = r;
+    this.cartService.setQuantity(productId,quantity)
+    .subscribe( r => this.items.map( it => {
+      if(it.productId == productId){ 
+        console.log("r" + r)
+        it.total = r.total
+        it.promotionApplied = r.appliedPromotion
+      }
     }));
   }
 
