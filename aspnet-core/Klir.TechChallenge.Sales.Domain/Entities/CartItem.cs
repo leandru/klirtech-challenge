@@ -14,15 +14,12 @@ namespace Klir.TechChallenge.Sales.Domain.Entities
 
         public int Quantity { get; private set; }
 
-        public int? ProductPromotionId { get; set; }
-
-        public CartItem(int productId, string productName, decimal price, int quantity, int? productPromotionId)
+        public CartItem(int productId, string productName, decimal price, int quantity)
         {
             ProductId = productId;
             ProductName = productName;
             Price = price;
             Quantity = quantity;
-            ProductPromotionId = productPromotionId;
         }
 
         public void AssociateTo(Guid cartId)

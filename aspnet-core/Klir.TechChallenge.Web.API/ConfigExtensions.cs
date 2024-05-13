@@ -30,7 +30,7 @@ namespace Klir.TechChallenge.Web.API
             var promotion2 = new Promotion(2, "3 for 10 Euro", promotionType2, 3, 10m);
             Promotion[] promotions = [promotion, promotion2];
 
-            ProductPromotion[] productPromotions = [new ProductPromotion(1,1, 1), new ProductPromotion(2,2, 2), new ProductPromotion(3,4, 2)];
+            ProductPromotion[] productPromotions = [new ProductPromotion(1, 1), new ProductPromotion(2, 2), new ProductPromotion(4, 2)];
 
             salesContext?.PromotionTypes.AddRange(promotionsTypes);
 

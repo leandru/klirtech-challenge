@@ -44,7 +44,7 @@ namespace Klir.TechChallenge.Sales.Application
             }
             else {
                 var productPromotion = await _productPromotionRepository.GetProductPromotionAsync(item.ProductId);
-                var newItem = new CartItem(item.ProductId, item.ProductName, item.Price, item.Quantity, productPromotion?.Id);
+                var newItem = new CartItem(item.ProductId, item.ProductName, item.Price, item.Quantity);
                 cart.AddItem(newItem);
                 var addedItem = cart.Items.First(it => it.ProductId == item.ProductId);
                 await _cartRepository.AddItemAsync(newItem);  

@@ -14,7 +14,7 @@ namespace Klir.TechChallenge.Sales.Tests
         [Fact]
         public void AddItem_AddsItemToCart_WhenItemDoesNotExist()
         {
-            var itemToAdd = new CartItem(productId: 1, productName: "Product A", 10, 1, 1);
+            var itemToAdd = new CartItem(productId: 1, productName: "Product A", 10, 1);
 
             _cart.AddItem(itemToAdd);
 
@@ -24,8 +24,8 @@ namespace Klir.TechChallenge.Sales.Tests
         [Fact]
         public void RemoveItem_RemovesItemFromCart()
         {
-            var item1 = new CartItem( productId: 1, productName: "Product A", 10, 1, 1);
-            var item2= new CartItem( productId: 2, productName: "Product B", 10, 1, 2);
+            var item1 = new CartItem( productId: 1, productName: "Product A", 10, 1);
+            var item2= new CartItem( productId: 2, productName: "Product B", 10, 1);
             _cart.AddItem(item1);
 
             _cart.AddItem(item2);
